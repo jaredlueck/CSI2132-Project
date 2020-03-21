@@ -9,7 +9,8 @@ CREATE TABLE User (
 	firstname varchar(20),
 	middlename varchar(20),
 	lastname varchar(20),
-	primary key (user_id)
+	primary key (user_id),
+	foreign key (country) references Branch(country)
 );
 
 CREATE TABLE Host (
@@ -58,7 +59,7 @@ CREATE TABLE Payment (
 	guest_id int,
 	primary key (transaction_id), 
 	foreign key (host_id) references Host(host_id),
-	foreign key (guest_id) references Host(guest_id)
+	foreign key (guest_id) references Guest(guest_id)
 );
 
 CREATE TABLE Property (
@@ -69,7 +70,11 @@ CREATE TABLE Property (
 	province varchar(20),
 	country varchar(20),
 	available_date date,
-	beds_number int
+	beds_number int,
+	host_id int,
+	foreign key (host_id) references Host(host_id),
+	primary key (property_id)
+	
 );
 
 CREATE TABLE Pricing (
@@ -78,7 +83,7 @@ CREATE TABLE Pricing (
 	guest_number int,
 	property_type varchar(20),
 	primary key (property_id),
-	foreign key (property_id) references Property(positions)
+	foreign key (property_id) references Property(property_id)
 );
 
 CREATE TABLE Rental_Agreement (
@@ -89,7 +94,7 @@ CREATE TABLE Rental_Agreement (
 	host_id int,
 	guest_id int, 
 	foreign key (host_id) references Host(host_id),
-	foreign key (guest_id) references Host(guest_id),
+	foreign key (guest_id) references Guest(guest_id),
 	primary key(agreement_id)
 );
 
