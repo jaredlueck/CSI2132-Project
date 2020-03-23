@@ -52,14 +52,16 @@ CREATE TABLE Phonenumber (
 
 CREATE TABLE Payment (
 	transaction_id int,
-	transation_type varchar(20),
+	transaction_type varchar(20),
 	amount float,
 	status varchar(20),
 	host_id int,
 	guest_id int,
+	property_id int,
 	primary key (transaction_id), 
 	foreign key (host_id) references Host(host_id),
-	foreign key (guest_id) references Guest(guest_id)
+	foreign key (guest_id) references Guest(guest_id),
+	foreign key (property_id) references Property(property_id)
 );
 
 CREATE TABLE Property (
@@ -93,8 +95,10 @@ CREATE TABLE Rental_Agreement (
 	end_date date,
 	host_id int,
 	guest_id int, 
+	property_id int,
 	foreign key (host_id) references Host(host_id),
 	foreign key (guest_id) references Guest(guest_id),
+	foreign key (property_id) references Property(property_id)
 	primary key(agreement_id)
 );
 

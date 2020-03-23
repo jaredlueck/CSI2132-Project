@@ -42,7 +42,7 @@ phonenumbers = [
 ]
 
 payments = [
-(1, "Credit", 100.13, "Pending", 1, 3)
+(1, "Credit", 100.13, "Pending", 1, 5, 2)
 ]
 
 properties = [
@@ -55,13 +55,14 @@ pricings = [
 (2, 10.14, 4, "Apartment")
 ]
 
+
 rental_agreements = [
-(1, "2010-10-17", "2010-10-26", "2010-11-03", 1, 5)
+(1, "2010-10-17", "2010-10-10", "2010-11-03", 1, 5, 2)
 ]
 
 reviews = [
-(1, "Very good", "2012-10-19", 3.4, 3.9, 3.0, 2.5, 1, 3),
-(2, "Great place", "2012-10-19", 3.4, 3.9, 3.0, 2.5, 1, 3),
+(1, "Very good", "2012-10-19", 3.4, 3.9, 3.0, 2.5, 2, 3),
+(2, "Great place", "2012-10-19", 1.0, 2.9, 1.0, 2.5, 2, 3),
 (3, "Liked it a lot", "2012-10-19", 3.4, 3.9, 3.0, 2.5, 1, 3)
 ]
 
@@ -91,13 +92,15 @@ cur.executemany("INSERT INTO Guest VALUES(?,?,?,?,?,?,?,?,?,?)", guests)
 
 cur.executemany("INSERT INTO Phonenumber VALUES(?,?)", phonenumbers)
 
-cur.executemany("INSERT INTO Payment VALUES(?,?,?,?,?,?)", payments)
+
 
 cur.executemany("INSERT INTO Property VALUES(?,?,?,?,?,?,?,?,?)", properties)
 
+cur.executemany("INSERT INTO Payment VALUES(?,?,?,?,?,?,?)", payments)
+
 cur.executemany("INSERT INTO Pricing VALUES(?,?,?,?)", pricings)
 
-cur.executemany("INSERT INTO Rental_Agreement VALUES(?,?,?,?,?,?)", rental_agreements)
+cur.executemany("INSERT INTO Rental_Agreement VALUES(?,?,?,?,?,?, ?)", rental_agreements)
 
 cur.executemany("INSERT INTO Review VALUES(?,?,?,?,?,?,?,?,?)", reviews)
 
