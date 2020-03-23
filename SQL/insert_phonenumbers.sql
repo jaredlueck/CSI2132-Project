@@ -1,0 +1,2 @@
+INSERT INTO Phonenumber VALUES (1, '613-823-4352');
+INSERT INTO Phonenumber VALUES (3, '613-823-7791');

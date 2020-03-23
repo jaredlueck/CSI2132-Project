@@ -1,0 +1,3 @@
+INSERT INTO Branch VALUES ('Canada');
+INSERT INTO Branch VALUES ('USA');
+INSERT INTO Branch VALUES ('France');

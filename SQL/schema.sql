@@ -1,8 +1,14 @@
-CREATE TABLE User (
+CREATE TABLE Branch (
+	country varchar(20),
+	primary key (country)
+);
+
+CREATE TABLE Rental_User (
 	user_id int,
-	email_address varchar(20),
+	email_address varchar(50),
 	unit_number int,
 	street_number int,
+	street varchar(20),
 	city varchar(20),
 	province varchar(20),
 	country varchar(20),
@@ -15,9 +21,10 @@ CREATE TABLE User (
 
 CREATE TABLE Host (
 	host_id int,
-	email_address varchar(20) not null,
+	email_address varchar(50) not null,
 	unit_number int,
 	street_number int,
+	street varchar(20),
 	city varchar(20) not null,
 	province varchar(20) not null,
 	country varchar(20) not null,
@@ -25,14 +32,15 @@ CREATE TABLE Host (
 	middlename varchar(20),
 	lastname varchar(20) not null,
 	primary key (host_id),
-	foreign key (host_id) references User(user_id) 
+	foreign key (host_id) references Rental_User(user_id) 
 );
 
 CREATE TABLE Guest (
 	guest_id int,
-	email_address varchar(20) not null,
+	email_address varchar(50) not null,
 	unit_number int,
 	street_number int,
+	street varchar(20),
 	city varchar(20) not null,
 	province varchar(20) not null,
 	country varchar(20) not null,
@@ -40,14 +48,31 @@ CREATE TABLE Guest (
 	middlename varchar(20),
 	lastname varchar(20) not null,
 	primary key (guest_id),
-	foreign key (guest_id) references User(user_id) 
+	foreign key (guest_id) references Rental_User(user_id) 
 );
 
 CREATE TABLE Phonenumber (
 	user_id int,
 	phone_number varchar(20),
 	primary key (user_id, phone_number),
-	foreign key (user_id) references User(user_id)
+	foreign key (user_id) references Rental_User(user_id)
+);
+
+CREATE TABLE Property (
+	property_id int,
+	unit_number int, 
+	street_number int,
+	street varchar(20),
+	city varchar(20),
+	province varchar(20),
+	country varchar(20),
+	available_date date,
+	beds_number int,
+	host_id int,
+	foreign key (host_id) references Host(host_id),
+	primary key (property_id),
+	foreign key (country) references Branch(country) 
+	
 );
 
 CREATE TABLE Payment (
@@ -62,21 +87,6 @@ CREATE TABLE Payment (
 	foreign key (host_id) references Host(host_id),
 	foreign key (guest_id) references Guest(guest_id),
 	foreign key (property_id) references Property(property_id)
-);
-
-CREATE TABLE Property (
-	property_id int,
-	unit_number int, 
-	street_number int,
-	city varchar(20),
-	province varchar(20),
-	country varchar(20),
-	available_date date,
-	beds_number int,
-	host_id int,
-	foreign key (host_id) references Host(host_id),
-	primary key (property_id)
-	
 );
 
 CREATE TABLE Pricing (
@@ -98,7 +108,7 @@ CREATE TABLE Rental_Agreement (
 	property_id int,
 	foreign key (host_id) references Host(host_id),
 	foreign key (guest_id) references Guest(guest_id),
-	foreign key (property_id) references Property(property_id)
+	foreign key (property_id) references Property(property_id),
 	primary key(agreement_id)
 );
 
@@ -117,16 +127,11 @@ CREATE TABLE Review (
 	foreign key (guest_id) references Guest(guest_id)
 );
 
-CREATE TABLE Branch (
-	country varchar(20),
-	primary key (country)
-);
-
 CREATE TABLE Employee (
 	employee_id int,
 	firstname varchar(20),
 	lastname varchar(20),
-	email_address varchar(20),
+	email_address varchar(50),
 	position varchar(20),
 	salary float,
 	branch varchar(20),
@@ -138,7 +143,7 @@ CREATE TABLE Manager (
 	manager_id int,
 	firstname varchar(20),
 	lastname varchar(20),
-	email_address varchar(20),
+	email_address varchar(50),
 	position varchar(20),
 	salary float,
 	branch varchar(20),
