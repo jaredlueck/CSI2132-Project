@@ -83,5 +83,12 @@ WHERE phone_number = '555-555-5555'
 
 /* Test Query 10 */
 
+CREATE FUNCTION FirstNameFirst(firstname varchar(20), lastname varchar(20)) 
+	RETURNS varchar(50) AS $$ 
+		SELECT CONCAT(firstname, ' ', lastname) as result
+		$$ LANGUAGE SQL;
+	
+	
+	
 
 
