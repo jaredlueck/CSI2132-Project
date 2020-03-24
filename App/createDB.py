@@ -1,6 +1,8 @@
 import psycopg2
 
-con = psycopg2.connect(database="jluec081", user="jluec081", password="Darthvader22", host="web0.eecs.uottawa.ca", port="15432")
+#Put DB Login here
+
+con = psycopg2.connect(database="jluec081", user="jluec081", password="", host="web0.eecs.uottawa.ca", port="15432")
 
 
 cur = con.cursor()
