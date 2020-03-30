@@ -1,6 +1,12 @@
+
+/*
+ Phonenumber (
+	user_id int PK FK,
+	phone_number varchar(20) PK,
+);
+*/
 INSERT INTO Phonenumber VALUES (1, '613-823-4352');
 INSERT INTO Phonenumber VALUES (3, '613-823-7791');
-
 INSERT INTO Phonenumber VALUES (31, '134-559-0671x28720');
 INSERT INTO Phonenumber VALUES (110, '916-694-5092x524');
 INSERT INTO Phonenumber VALUES (135, '(517)959-2088');

@@ -1,3 +1,19 @@
+/*
+Guest (
+	guest_id int PK FK,
+	email_address varchar(50) not null,
+	unit_number int,
+	street_number int,
+	street varchar(20),
+	city varchar(20) not null,
+	province varchar(20) not null,
+	country varchar(20) not null,
+	firstname varchar(20) not null,
+	middlename varchar(20),
+	lastname varchar(20) not null,
+); */
+
+
 INSERT INTO Guest VALUES (3, 'ben.baker@gmail.com', 3, 6, 'third street','Ottawa', 'Ontario', 'Canada', 'Ben', NULL, 'Baker');
 INSERT INTO Guest VALUES (4, 'theo.holland@gmail.com', 4, 19, 'fourth street', 'Ottawa', 'Ontario', 'Canada', 'Theo', NULL, 'Holland');
 INSERT INTO Guest VALUES (5, 'david.chapmen@gmail.com', 5, 6, 'fifth street', 'Ottawa', 'Ontario', 'Canada', 'David', NULL, 'Chapmen');

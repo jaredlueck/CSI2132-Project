@@ -1,10 +1,20 @@
-INSERT INTO Payment VALUES (0, NULL, '48146000', 'excepturi', 110, 393, 7);
-INSERT INTO Payment VALUES (1, NULL, '774', 'sapiente', 135, 400, 8);
-INSERT INTO Payment VALUES (2, NULL, '1087850', 'asperiores', 241, 422, 9);
-INSERT INTO Payment VALUES (3, NULL, '180416000', 'quidem', 110, 110, 2);
-INSERT INTO Payment VALUES (4, NULL, '687', 'omnis', 135, 135, 3);
-INSERT INTO Payment VALUES (5, NULL, '344074000', 'rerum', 252, 252, 5);
-INSERT INTO Payment VALUES (6, NULL, '45604', 'ut', 31, 31, 0);
-INSERT INTO Payment VALUES (7, NULL, '5318680', 'beatae', 241, 241, 4);
-INSERT INTO Payment VALUES (8, NULL, '590', 'veniam', 31, 300, 6);
-INSERT INTO Payment VALUES (10, NULL, '80585', 'recusandae', 252, 450, 10);
+/*Payment (
+	transaction_id int PK,
+	transaction_type varchar(20),
+	amount float,
+	status varchar(20),
+	host_id int,
+	guest_id int FK,
+	property_id int FK,
+); */
+
+INSERT INTO Payment VALUES (0, 'Cash', 43.45, 'pending', 110, 393, 7);
+INSERT INTO Payment VALUES (1, 'Credit Card', 54.65, 'approved', 135, 400, 8);
+INSERT INTO Payment VALUES (2, 'Check', 30.14, 'completed', 241, 422, 9);
+INSERT INTO Payment VALUES (3, 'Direct Debit', 34.45, 'completed', 110, 110, 2);
+INSERT INTO Payment VALUES (4, 'Cash', 123.45, 'pending', 135, 135, 3);
+INSERT INTO Payment VALUES (5, 'Cash', 90.45, 'approved', 252, 252, 5);
+INSERT INTO Payment VALUES (6, 'Cash', 23.45, 'ut', 31, 31, 0);
+INSERT INTO Payment VALUES (7, 'Direct Debit', 34.67, 'approved', 241, 241, 4);
+INSERT INTO Payment VALUES (8, 'Cash', 590.00, 'completed', 31, 300, 6);
+INSERT INTO Payment VALUES (10, 'Cash', 700.12, 'approved', 252, 450, 10);
