@@ -28,7 +28,7 @@ WITH pricing_info AS (SELECT RA.sign_date, RA.start_date, RA.end_date, PRI.rate,
 
 SELECT * FROM pricing_info PI 
 WHERE PI.rate = (SELECT MIN(rate) FROM pricing_info) AND
-PI.end_date < DATE("now")
+PI.end_date < now()
 
 /* Test Query 4 */
 
@@ -51,11 +51,11 @@ SELECT DISTINCT * FROM Property PRO
 
 /* Test Query 6 */
 
-SELECT * FROM Rental_Agreement RA 
+ SELECT property_id, start_date as rental_start, end_date as rental_end, city, country, street FROM Rental_Agreement RA 
 	INNER JOIN Property PRO
-		ON  PRO.property_id = RA.property_id
-	WHERE julianday(RA.start_date) 
-					- julianday(RA.start_date, 'start of month') + 1 = 10
+		USING(property_id)
+	WHERE extract(day from RA.start_date) = 10; 
+					- 
 
 
 /* Test Query 7 */

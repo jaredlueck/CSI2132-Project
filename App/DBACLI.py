@@ -12,6 +12,11 @@ print("Enter sql queries to execute")
 
 while True:
     query = input()
+
+    if query == "exit":
+        con.close()
+        break
+    
     cur.execute(query)
 
     try:
@@ -20,7 +25,9 @@ while True:
 
         for row in records:
             print(row)
+
     except Exception as e:
+
         print(e)
 
 
