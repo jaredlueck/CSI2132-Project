@@ -1,8 +1,6 @@
 /* Test Query 1 */
 
 SELECT firstname, PR.property_type, PR.rate, sign_date, G.country, transaction_type, status FROM Rental_Agreement RA 
-	inner join Property Prop
-		on Prop.property_id = RA.property_id
 	inner join Guest G 
 		on G.guest_id = RA.guest_id 
 	inner join Pricing Pri

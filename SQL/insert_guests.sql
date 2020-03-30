@@ -19,7 +19,6 @@ INSERT INTO Guest VALUES (4, 'theo.holland@gmail.com', 4, 19, 'fourth street', '
 INSERT INTO Guest VALUES (5, 'david.chapmen@gmail.com', 5, 6, 'fifth street', 'Ottawa', 'Ontario', 'Canada', 'David', NULL, 'Chapmen');
 INSERT INTO Guest VALUES (6, 'caden.koch@gmail.com', 6, 6, 'sixth street', 'Ottawa', 'Ontario', 'Canada', 'Caden', NULL, 'Koch');
 INSERT INTO Guest VALUES (7, 'bruce.bright@hotmail.com', 4, 5, 'seventh street', 'Toronto', 'Ontario', 'Canada', 'Bruce', 'Guy',  'Bright');
-
 INSERT INTO Guest VALUES (31, 'lindgren.sienna@example.com', 881, 708, 'molestiae', 'Mayertburgh', 'et', 'British Indian Ocean', 'Shaniya', 'Edythe', 'Schmidt');
 INSERT INTO Guest VALUES (110, 'landen95@example.net', 501, 149, 'dolorem', 'Lake Esperanza', 'commodi', 'Bulgaria', 'Garfield', 'Porter', 'Ferry');
 INSERT INTO Guest VALUES (135, 'fay62@example.net', 266, 602, 'fuga', 'Lake Crystalstad', 'nisi', 'Chad', 'Javonte', 'Kacey', 'Cruickshank');
