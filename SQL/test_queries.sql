@@ -60,10 +60,8 @@ SELECT DISTINCT * FROM Property PRO
 
 /* Test Query 7 */
 
-SELECT * FROM Employee E
-	LEFT OUTER JOIN Manager M 
-		ON E.employee_id = M.manager_id
-	ORDER BY manager_id DESC, employee_id DESC
+SELECT * FROM Employee E where salary > 10000
+	ORDER BY manager_id, employee_id 
 	
 /* Test Query 8 */
 

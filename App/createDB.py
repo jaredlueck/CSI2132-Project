@@ -30,12 +30,12 @@ def createDB(con):
         cur.execute(fp.read()) 
 
     with open('../SQL/insert_properties.sql') as fp:
-            cur.execute(fp.read()) 
-
-    with open('../SQL/insert_employees.sql') as fp:
-        cur.execute(fp.read()) 
+            cur.execute(fp.read())
 
     with open('../SQL/insert_managers.sql') as fp:
+        cur.execute(fp.read()) 
+
+    with open('../SQL/insert_employees.sql') as fp:
         cur.execute(fp.read()) 
 
     with open('../SQL/insert_phonenumbers.sql') as fp:

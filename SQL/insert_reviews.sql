@@ -10,7 +10,6 @@ Review (
 	location float,
 	property_id int FK,
 	guest_id int FK,
-	primary key (review_id),
 );*/
 
 
