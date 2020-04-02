@@ -2,7 +2,7 @@ import psycopg2
 
 import createDB as DB
 
-con = psycopg2.connect(database="postgres", user="postgres", password="", host="localhost", port="5432")
+con = psycopg2.connect(database="postgres", user="postgres", password="Darthvader22", host="localhost", port="5432")
 
 DB.createDB(con)
 
@@ -17,10 +17,10 @@ while True:
         con.close()
         break
     
-    cur.execute(query)
+   
 
     try:
-
+        cur.execute(query)
         records = cur.fetchall()
 
         for row in records:
@@ -29,6 +29,8 @@ while True:
     except Exception as e:
 
         print(e)
+        cur.execute("ROLLBACK")
+        con.commit()
 
 
 

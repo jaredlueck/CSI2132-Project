@@ -106,7 +106,7 @@ CREATE TABLE Rental_Agreement (
 	agreement_id int, 
 	sign_date date not null,
 	start_date date not null,	
-	end_date date not null,
+	end_date date not null constraint after_start check(end_date > start_date),
 	host_id int not null,
 	guest_id int not null, 
 	property_id int,
@@ -161,5 +161,6 @@ CREATE TABLE Employee (
 	primary key (employee_id)
 );
 
-
-
+CREATE SEQUENCE property_sequence
+	start 11
+	increment 1;
