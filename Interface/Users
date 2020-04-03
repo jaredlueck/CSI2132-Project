@@ -1,0 +1,13 @@
+  import json
+  import logging
+  from user import UserAPI
+  from.import settings
+  
+  _all_=('users',)
+  
+  _logger=logging.getLogger('booking')
+  
+  def user():
+  user=UserAPI().user(cookies=setting.COOKIES)
+  _logger.debug(json.dumps(user,ensure_ascii=False))
+  return user
