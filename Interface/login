@@ -1,0 +1,13 @@
+import logging
+
+_all_ =('LogLevelFilter',)
+
+class LogLevelFilter(logging.filter):
+    def _init_(self，loglevelno=logging。INFO):
+        self._log_level_no=log_level_no
+
+    def filter(self,record):
+        if record.levelon==self._log_level_no:
+            return 1
+        else:
+            return 0
