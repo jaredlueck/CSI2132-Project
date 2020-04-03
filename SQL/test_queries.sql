@@ -60,8 +60,15 @@ SELECT DISTINCT * FROM Property PRO
 
 /* Test Query 7 */
 
-SELECT * FROM Employee E where salary > 10000
-	ORDER BY manager_id, employee_id 
+WITH
+managers AS (
+	SELECT * FROM Employee e INNER JOIN Manager m ON m.manager_id = e.employee_id),
+employees AS (
+	SELECT * FROM Employee e1 left outer join Manager m1 on e1.employee_id = m1.manager_id  where manager_id is NULL)
+(Select * From employees where salary > 1500 order by employee_id) 
+UNION ALL
+(Select * From managers where salary > 1500 order by employee_id);
+
 	
 /* Test Query 8 */
 

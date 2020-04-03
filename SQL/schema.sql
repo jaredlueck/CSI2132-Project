@@ -136,31 +136,26 @@ CREATE TABLE Review (
 		on delete set null
 );
 
-CREATE TABLE Manager (
-	manager_id int,
-	firstname varchar(20) not null,
-	lastname varchar(20)not null,
-	email_address varchar(50) not null,
-	salary float,
-	branch varchar(20) not null,
-	foreign key (branch) references Branch(country),
-	primary key (manager_id)
-);
-
 CREATE TABLE Employee (
 	employee_id int,
 	firstname varchar(20) not null,
 	lastname varchar(20) not null,
 	email_address varchar(50) not null,
-	position varchar(20),
+	position varchar(30),
 	salary float,
 	branch varchar(20) not null,
-	manager_id int,
-	foreign key (manager_id) references Manager(manager_id),
 	foreign key (branch) references Branch(country),
 	primary key (employee_id)
 );
 
+CREATE TABLE Manager (
+	manager_id int,
+	primary key (manager_id),
+	foreign key (manager_id) references Employee(employee_id) 
+);
+
+/*
 CREATE SEQUENCE property_sequence
 	start 11
 	increment 1;
+*/
