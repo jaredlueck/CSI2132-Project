@@ -68,7 +68,6 @@ CREATE TABLE Property (
 	city varchar(20) not null,
 	province varchar(20),
 	country varchar(20) not null,
-	available_date date not null,
 	beds_number int not null,
 	host_id int not null,
 	foreign key (host_id) references Host(host_id)
@@ -154,8 +153,6 @@ CREATE TABLE Manager (
 	foreign key (manager_id) references Employee(employee_id) 
 );
 
-/*
 CREATE SEQUENCE property_sequence
 	start 11
 	increment 1;
-*/

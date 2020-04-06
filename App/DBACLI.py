@@ -2,7 +2,7 @@ import psycopg2
 
 import createDB as DB
 
-con = psycopg2.connect(database="postgres", user="postgres", password="", host="localhost", port="5432")
+con = connectDB.get_connection()
 
 DB.createDB(con)
 

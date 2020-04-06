@@ -2,11 +2,11 @@ import psycopg2
 
 #Put DB Login here
 
-def createDB(con):
-    cur = con.cursor()
+if __name__ == "__main__":
 
-    with open('../SQL/clear.sql') as fp:
-        cur.execute(fp.read()) 
+    con = psycopg2.connect(database="postgres", user="postgres", password="Darthvader22", host="localhost", port="5432")
+
+    cur = con.cursor()
 
     print("Creating tables...", end="")
 
@@ -56,4 +56,5 @@ def createDB(con):
     con.commit()
 
     print("Done\n")
+
 

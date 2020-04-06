@@ -11,14 +11,20 @@
 	
 ); */
 
-INSERT INTO Property VALUES (1, 65, 55, 'Deighton cresent', 'Ottawa', 'Ontario', 'Canada', '2010-10-17', 2, 2);
-INSERT INTO Property VALUES (0, 9, 441, 'Locheland drive', 'Lake Billstad', 'Michigan', 'Singapore', '1987-12-14', 3, 252);
-INSERT INTO Property VALUES (2, 16, 113, 'Longfields drive', 'West Lois', 'Quebec', 'Palestinian Territor', '1971-09-20', 9, 135);
-INSERT INTO Property VALUES (3, 59, 761, 'Main street', 'Lake Tiaraside', 'Yukon', 'Chad', '1972-09-18', 1, 135);
-INSERT INTO Property VALUES (4, 45, 109, 'Second street', 'Collinsberg', 'Missouri', 'Madagascar', '1982-11-10', 3, 252);
-INSERT INTO Property VALUES (5, 91, 776, 'Maybrooke avenue', 'Sigmundberg', 'Georgia', 'Bulgaria', '1986-07-20', 9, 110);
-INSERT INTO Property VALUES (6, 26, 983, 'Somerset avenue', 'Lake Leone', 'Ontario', 'Pitcairn Islands', '1982-03-15', 0, 241);
-INSERT INTO Property VALUES (7, 84, 948, 'Laurier avenue', 'West Sincere', 'California', 'Hong Kong', '1991-12-19', 6, 241);
-INSERT INTO Property VALUES (8, 65, 797, 'West junt club', 'Jakubowskiside', 'Ontario', 'British Indian Ocean', '2010-11-20', 2, 31);
-INSERT INTO Property VALUES (9, 100, 546, 'Petersburg drive', 'Lefflerchester', 'Alberta', 'Netherlands Antilles', '2000-02-22', 0, 110);
-INSERT INTO Property VALUES (10, 47, 768, 'Rodeo drive', 'Abagailberg', 'Saskatchwan', 'Netherlands', '2014-06-13', 0, 31);
+INSERT INTO Property VALUES (1, 65, 55, 'Deighton cresent', 'Ottawa', 'Ontario', 'Canada', 2, 2);
+INSERT INTO Property VALUES (0, 9, 441, 'Locheland drive', 'Lake Billstad', 'Michigan', 'Singapore', 3, 252);
+INSERT INTO Property VALUES (2, 16, 113, 'Longfields drive', 'West Lois', 'Quebec', 'Palestinian Territor', 9, 135);
+INSERT INTO Property VALUES (3, NULL, 761, 'Main street', 'Lake Tiaraside', 'Yukon', 'Chad', 1, 135);
+INSERT INTO Property VALUES (4, 45, 109, 'Second street', 'Collinsberg', 'Missouri', 'Madagascar',  3, 252);
+INSERT INTO Property VALUES (5, 91, 776, 'Maybrooke avenue', 'Sigmundberg', 'Georgia', 'Bulgaria',  9, 110);
+INSERT INTO Property VALUES (6, NULL, 983, 'Somerset avenue', 'Lake Leone', 'Ontario', 'Pitcairn Islands',  0, 241);
+INSERT INTO Property VALUES (7, 84, 948, 'Laurier avenue', 'West Sincere', 'California', 'Hong Kong',  6, 241);
+INSERT INTO Property VALUES (8, 65, 797, 'West Hunt club', 'Jakubowskiside', 'Ontario', 'British Indian Ocean', 2, 31);
+INSERT INTO Property VALUES (9, NULL, 546, 'Petersburg drive', 'Lefflerchester', 'Alberta', 'Netherlands Antilles',  0, 110);
+INSERT INTO Property VALUES (10, 47, 768, 'Rodeo drive', 'first street', 'Saskatchwan', 'Netherlands',  3, 31);
+
+INSERT INTO Property VALUES (11, NULL, 768, 'Longfields drive', 'bay drive', 'Saskatchwan', 'Netherlands',  7, 31);
+INSERT INTO Property VALUES (12, NULL, 78, 'Malvern drive', 'Laurier evenue', 'Saskatchwan', 'Netherlands',  2, 31);
+INSERT INTO Property VALUES (13, NULL, 707, 'Woodroffe ave', 'Jakubowskiside', 'Ontario', 'British Indian Ocean', 2, 2);
+INSERT INTO Property VALUES (14, NULL, 5, 'Soho drive', 'Lefflerchester', 'Alberta', 'Netherlands Antilles',  0, 110);
+INSERT INTO Property VALUES (15, NULL, 6, 'Halley drive', 'Lake Leone', 'Ontario', 'Pitcairn Islands',  0, 241);

@@ -2,6 +2,7 @@
 https://dba.stackexchange.com/questions/152462/postgres-how-to-drop-all-the-table-in-a-schema-through-command. 
 I simply used it in the event that I would like to remove all the data from the tables. (drop all the tables) */
 
+DROP SEQUENCE IF EXISTS property_sequence;
 DO $$ DECLARE
     tabname RECORD;
 BEGIN
