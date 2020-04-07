@@ -64,7 +64,7 @@ def list_property(id, cur, con):
 
     while True:
          try:
-             guest_number = int(input("Enter the number of guests for your proper: "))
+             guest_number = int(input("Enter the number of guests for your property: "))
              break
          except:
              print("Invalid input")
@@ -90,7 +90,8 @@ def list_property(id, cur, con):
     con.commit()
 
     cur.callproc("new_pricing", [property_id, rate, guest_number, property_type])
-    
+
+    con.commit()
 
     
      

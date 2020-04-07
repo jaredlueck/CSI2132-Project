@@ -4,16 +4,16 @@ import search_properties as SP
 import connectDB
 from tabulate import tabulate
 
-user_field_map = {"Email Address" : "email_address",
-                              "Unit Number" : "unit_number",
-                              "Street Number" : "street_number",
+user_field_map = {"Email Address": "email_address",
+                              "Unit Number": "unit_number",
+                              "Street Number": "street_number",
                               "Street": "street",
-                              "City" : "city",
-                              "Province" : "province",
-                              "Country" : "country",
-                              "First Name" : "firstname",
-                              "Middle Name" : "middlename",
-                              "Last Name" : "lastname"}
+                              "City": "city",
+                              "Province": "province",
+                              "Country": "country",
+                              "First Name": "firstname",
+                              "Middle Name": "middlename",
+                              "Last Name": "lastname"}
 
 con = connectDB.get_connection()
 cur = con.cursor()
@@ -35,9 +35,13 @@ while True:
         cur.execute("SELECT user_id FROM Rental_User U Where U.email_address = %s", (email,))
         uid = cur.fetchall()[0][0]
 
+    print("\nList of commands:\nlist (List Your Property )\n\nsearch (Search properties)\n\n"
+          "view (View your Properties)\n\nremove (Remove a property)\n\ninfo (View your personal info)\n\n"
+          "update-info (Update your personal info)\n\n")
+
     while True:
 
-        op = input("enter 'list' to list a property for rental or 'search' to check property availibilities: ")
+        op = input("Enter a command from the list above: ")
 
         if op == 'list':
             LP.list_property(uid, cur, con)
@@ -55,15 +59,15 @@ while True:
             city, province, country, beds_number FROM Property where host_id = {uid}""")
             res = cur.fetchall()
             print((2 * "\n") + tabulate(res,
-                                        headers=["ID, Address", "City", "Province", "country", "beds"])
+                                        headers=["ID", "Address", "City", "Province", "country", "beds"])
                   + (2 * "\n"))
             try:
                 to_remove = int(input("Enter the ID of the property to remove: "))
             except:
                 print("Invalid ID")
 
-            cur.execute(f"""DELETE FROM Property WHERE EXISTS 
-            (SELECT * FROM Property WHERE property_id = {to_remove})""")
+            cur.execute(f"""DELETE FROM Property WHERE property_id = {to_remove}""")
+            con.commit()
         elif op == 'info':
             cur.execute(f"SELECT * FROM Rental_User U WHERE U.user_id = '{uid}'")
             print("""##################################\nYour Information\n##################################\n""")
@@ -96,24 +100,30 @@ while True:
                 First Name 
                 Middle Name
                 Last Name\n""")
-            while True:
-                field = input("Enter the field you wish to update (Must be one of the fields above):")
 
-                if field not in user_field_map.key():
+            while True:
+                field = input("Enter the field you wish to update (Must be one of the fields above) or "
+                              "'exit' to go back:")
+                if field == 'exit':
+                    break
+
+                if field not in user_field_map.keys():
                     print("Invalid Field")
                     continue
 
                 val_in = input("Enter the new value: ")
 
-            if field == "Street Number" or field == "Unit Number":
-                try:
-                    new_val = int(val_in)
-                except ValueError:
-                    print("Invalid input for Unit Number or Street Number")
-                    continue
-            else:
-                new_val = val_in
+                if field == "Street Number" or field == "Unit Number":
+                    try:
+                        new_val = int(val_in)
+                    except ValueError:
+                        print("Invalid input for Unit Number or Street Number")
+                        continue
+                else:
+                    new_val = val_in
 
-            column = user_field_map[field]
-            cur.execute(f"UPDATE Rental_User RU SET {column} = '{new_val} 'WHERE RU.user_id = {uid} ")
-            con.commit()
+                column = user_field_map[field]
+                cur.execute(f"UPDATE Rental_User RU SET {column} = '{new_val} 'WHERE RU.user_id = {uid} ")
+                con.commit()
+        else:
+            print("Unknown command. Please enter: list, search, view, remove, info or update-info")

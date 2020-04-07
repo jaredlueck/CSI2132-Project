@@ -1,11 +1,9 @@
 import psycopg2
-
-#Put DB Login here
+import connectDB
 
 if __name__ == "__main__":
 
-    con = psycopg2.connect(database="postgres", user="postgres", password="Darthvader22", host="localhost", port="5432")
-
+    con = connectDB.get_connection()
     cur = con.cursor()
 
     print("Creating tables...", end="")
@@ -53,8 +51,20 @@ if __name__ == "__main__":
     with open('../SQL/insert_payments.sql') as fp:
         cur.execute(fp.read())
 
-    con.commit()
-
     print("Done\n")
+    
+    print("Creating functions...", end="")
 
+    with open('../SQL/functions.sql') as fp:
+        cur.execute(fp.read())
+    
+    print("Done\n")
+    
+    print("Creating triggers...", end="")
 
+    with open('../SQL/triggers.sql') as fp:
+        cur.execute(fp.read())
+    
+    print("Done\n")
+    
+    con.commit()
