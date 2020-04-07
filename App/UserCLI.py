@@ -20,7 +20,7 @@ cur = con.cursor()
 
 while True:
 
-    email = input("Welcome to Host/Guest Interface. Please Enter your email adress to continue: ")
+    email = input("Welcome to Host/Guest Interface. Please Enter your email address to continue: ")
 
     cur.callproc("isValidUser", [email])
 
@@ -84,8 +84,8 @@ while True:
             print(tabulate(rows, headers=("Field", "Value")) + "\n")
 
         elif op == 'update-info':
-            field = input(
-                """Here are the fields you may update:
+            print(
+                """Here are the fields you may update:\n
                 Email Address
                 Unit Number
                 Street Number
@@ -95,11 +95,25 @@ while True:
                 Country
                 First Name 
                 Middle Name
-                Last Name
-                
-                Enter the field you wish to update: """)
+                Last Name\n""")
+            while True:
+                field = input("Enter the field you wish to update (Must be one of the fields above):")
 
-            new_val = int(input("Enter the new value: "))
+                if field not in user_field_map.key():
+                    print("Invalid Field")
+                    continue
+
+                val_in = input("Enter the new value: ")
+
+            if field == "Street Number" or field == "Unit Number":
+                try:
+                    new_val = int(val_in)
+                except ValueError:
+                    print("Invalid input for Unit Number or Street Number")
+                    continue
+            else:
+                new_val = val_in
+
             column = user_field_map[field]
-            cur.execute(f"UPDATE Rental_User RU SET {column} = {new_val} WHERE RU.user_id = {uid} ")
+            cur.execute(f"UPDATE Rental_User RU SET {column} = '{new_val} 'WHERE RU.user_id = {uid} ")
             con.commit()

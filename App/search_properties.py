@@ -31,12 +31,14 @@ def search_availibilities(id, cur, con):
 
     search_properties(cur, con, date, rate)
 
+
 def check_date(date_str):
     try:
         datetime.datetime.strptime(date_str, '%Y-%m-%d')
         return True
     except ValueError:
         return False
+
 
 def search_properties(cur, con, date, rate):
     
@@ -46,7 +48,7 @@ def search_properties(cur, con, date, rate):
                LEFT OUTER JOIN Rental_Agreement RA on RA.property_id =  P.property_id
                WHERE ((NOT (RA.start_date <= to_date('{date}', 'YYYY-MM-DD')
                AND to_date('{date}', 'YYYY-MM-DD') <= RA.end_date)  OR ('{date}' = ''))) 
-               AND ('{rate}' = '' OR ('{rate}' <> '' AND rate < '{rate}'))"""
+               AND ('{rate}' = '' OR ('{rate}' <> '' AND rate < '{rate}')) OR RA.agreement_id is NULL"""
               
     cur.execute(SQL1)
     

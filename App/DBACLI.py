@@ -1,5 +1,6 @@
 import psycopg2
 
+import connectDB
 import createDB as DB
 
 con = connectDB.get_connection()
