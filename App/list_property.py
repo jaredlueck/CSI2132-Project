@@ -85,9 +85,11 @@ def list_property(id, cur, con):
 
     print("Your property has been listed!")
 
-    property_id = cur.fetchall()
+    property_id = cur.fetchall()[0][0]
 
-    cur.callproc("new_pricing", [propert_id, rate, guest_number, property_type])
+    con.commit()
+
+    cur.callproc("new_pricing", [property_id, rate, guest_number, property_type])
     
 
     

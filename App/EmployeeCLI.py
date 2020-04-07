@@ -9,8 +9,12 @@ cur = con.cursor()
 while True:
     try:
         id = int(input("Welcome to the employee interface of the application. Please enter your employee ID to continue: "))
+        break
     except:
         print("Invalid input")
+
+while True:
+    
 
     cur.callproc("isValidEmployee", [id])
 
@@ -24,22 +28,26 @@ while True:
 
     branch = input("Enter the branch which you wish to view property liting (Or leave empty for all branches): ")
 
-    SQL_1 = f"""SELECT construct_address(unit_number, street_number, street), city, province, country, beds_number, is_occupied(property_id)
-              FROM Property WHERE country = '{branch}'"""
+    SQL = f"""SELECT construct_address(unit_number, street_number, street), city, province, country, beds_number, is_occupied(property_id)
+              FROM Property WHERE
+              (country = '{branch}' OR '{branch}' = '')"""
 
-    SQL_2 = f"""SELECT construct_address(unit_number, street_number, street), city, province, country, beds_number, is_occupied(property_id)
-            FROM Property"""
+    SQL2 = """WITH X AS (SELECT construct_address(unit_number, street_number, street), city, province, country, beds_number, is_occupied(property_id) as occupancy
+              FROM Property WHERE
+              (country = '{branch}' OR '{branch}' = '')) SELECT 
+			 cast( (SELECT COUNT(*) FROM X WHERE X.occupancy = 'OCCUPIED') as float) / (SELECT COUNT(*) FROM X) * 100;"""
 
-    if not branch == '':
-        cur.execute(SQL_1)
-    else:
-        cur.execute(SQL_2)
+    cur.execute(SQL)
 
     res = cur.fetchall()
 
     print((2 * "\n" ) + tabulate(res, \
     headers=["Address", "City", "Province", "Country", "Beds", "Occupancy"]) \
     + (2 * "\n" ))
+
+    cur.execute(SQL2)
+    res = cur.fetchall()
+    print(res)
     
 
     

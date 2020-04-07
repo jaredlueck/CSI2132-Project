@@ -30,11 +30,11 @@ def check_date(date_str):
         return False
 
 def search_properties(cur, con, date, rate):
-    SQL = f"""SELECT street_number, street, city, province, country, beds_number, rate,guest_number, property_type
+    SQL = f"""SELECT construct_address(unit_number, street_number, street), city, province, country, beds_number, rate,guest_number, property_type
               FROM Property P INNER join Pricing PR ON P.property_id = PR.property_id
               LEFT OUTER JOIN Rental_Agreement RA on RA.property_id =  P.property_id
-              WHERE NOT  (RA.start_date <= to_date('{date}', 'YYYY-MM-DD')
-              AND to_date('{date}', 'YYYY-MM-DD') <= RA.end_date) AND rate < {rate}"""
+              WHERE (NOT  (RA.start_date <= to_date('{date}', 'YYYY-MM-DD')
+              AND to_date('{date}', 'YYYY-MM-DD') <= RA.end_date) OR RA.agreement_id is NULL) AND rate < {rate}"""
 
     cur.execute(SQL)
 

@@ -1,6 +1,8 @@
 import psycopg2
 import list_property as LP
 import search_properties as SP
+import connectDB
+from tabulate import tabulate
 
 con = connectDB.get_connection()
 cur = con.cursor()
@@ -28,10 +30,16 @@ while True:
 
         if op == 'list':
             LP.list_property(id, cur, con)
-        if op == 'search':
+        elif op == 'search':
             SP.search_availibilities(id, cur, con)
-        else:
-            continue
+        elif op == 'view':
+            cur.execute(f"""SELECT construct_address(unit_number, street_number, street), 
+            city, province, country, beds_number FROM Property where host_id = {id}""")
+            res = cur.fetchall()
+            print((2 * "\n" ) + tabulate(res, \
+            headers=["Address", "City", "Province", "country", "beds", "rate"] )\
+            + (2 * "\n" ))
+        
 
 
 
@@ -47,10 +55,6 @@ while True:
     
     
 
-    
-
-def search_availibilities():
-    pass
 
 
     

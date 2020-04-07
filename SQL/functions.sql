@@ -65,14 +65,6 @@ CREATE OR REPLACE FUNCTION is_occupied(id int)
 		END IF;
 	END
 	$$ LANGUAGE plpgsql;
-	
-CREATE OR REPLACE FUNCTION construct_address(unit_num int, street_num int, street_name varchar)	
-	RETURNS VARCHAR as $$
-	DECLARE 
-	BEGIN 
-		IF NOT unit_num = NULL THEN RETURN SELECT concat(street_num, ' ', street_name, ' Unit ', unit_num);
-		ELSE SELECT concat(street_num, ' ', street_name) as RESULT;
-	END $$ LANGUAGE SQL;
 
 CREATE OR REPLACE FUNCTION construct_address(unit_num int, street_num int, street_name varchar)	
 	RETURNS VARCHAR as $$
@@ -81,7 +73,6 @@ CREATE OR REPLACE FUNCTION construct_address(unit_num int, street_num int, stree
 		IF NOT (unit_num is NULL) THEN SELECT concat(street_num, ' ', street_name, ' Unit ', unit_num) INTO address;
 		ELSE SELECT CONCAT(street_num, ' ', street_name) INTO address;
 		END IF;
-		
 		RETURN address;
 	END $$ LANGUAGE plpgsql;
 

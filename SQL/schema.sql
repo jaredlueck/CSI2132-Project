@@ -154,5 +154,5 @@ CREATE TABLE Manager (
 );
 
 CREATE SEQUENCE property_sequence
-	start 11
+	start 20
 	increment 1;
