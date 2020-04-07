@@ -76,5 +76,64 @@ CREATE OR REPLACE FUNCTION construct_address(unit_num int, street_num int, stree
 		RETURN address;
 	END $$ LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION get_availability(prop_id int)
+	RETURNS DATE AS $$
+	DECLARE res date;
+	BEGIN
+	IF is_occupied(prop_id) = 'OCCUPIED' THEN SELECT MAX(end_date) FROM Property P 
+	INNER JOIN Rental_Agreement RA ON RA.property_id = P.property_id WHERE P.property_id = prop_id INTO res;
+	ELSE SELECT now() into res;
+	END IF;
+	RETURN res;
+END $$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION update_host_guest_table()
+	RETURNS TRIGGER AS $update_info$
+	BEGIN
+	IF NOT OLD.email_address = NEW.email_address THEN
+	UPDATE Host SET email_address = NEW.email_address WHERE Host.host_id= NEW.user_id;
+	UPDATE Guest SET email_address = NEW.email_address WHERE Guest.guest_id= NEW.user_id;
+	END IF;
 	
+	IF NOT OLD.unit_number = NEW.unit_number THEN
+	UPDATE Host SET unit_number = NEW.unit_number WHERE Host.host_id= NEW.user_id;
+	UPDATE Guest SET unit_number = NEW.unit_number WHERE Guest.guest_id= NEW.user_id;
+	END IF;
 	
+	IF NOT OLD.street_number = NEW.street_number THEN
+	UPDATE Host SET street_number = NEW.street_number WHERE Host.host_id= NEW.user_id;
+	UPDATE Guest SET street_number = NEW.street_number WHERE Guest.guest_id= NEW.user_id;
+	END IF;
+	
+	IF NOT OLD.street = NEW.street THEN
+	UPDATE Host SET street = NEW.street WHERE Host.host_id= NEW.user_id;
+	UPDATE Guest SET street = NEW.street WHERE Guest.guest_id= NEW.user_id;
+	END IF;
+	
+	IF NOT OLD.city = NEW.city THEN
+	UPDATE Host SET city = NEW.city WHERE Host.host_id= NEW.user_id;
+	UPDATE Guest SET city = NEW.city WHERE Guest.guest_id= NEW.user_id;
+	END IF;
+	
+	IF NOT OLD.province = NEW.province THEN
+	UPDATE Host SET province = NEW.province WHERE Host.host_id= NEW.user_id;
+	UPDATE Guest SET province = NEW.province WHERE Guest.guest_id= NEW.user_id;
+	END IF;
+	
+	IF NOT OLD.firstname = NEW.firstname THEN
+	UPDATE Host SET firstname = NEW.firstname WHERE Host.host_id= NEW.user_id;
+	UPDATE Guest SET firstname = NEW.firstname WHERE Guest.guest_id= NEW.user_id;
+	END IF;
+	
+	IF NOT OLD.middlename = NEW.middlename THEN
+	UPDATE Host SET middlename = NEW.middlename WHERE Host.host_id= NEW.user_id;
+	UPDATE Guest SET middlename = NEW.middlename WHERE Guest.guest_id= NEW.user_id;
+	END IF;
+	
+	IF NOT OLD.lastname = NEW.lastname THEN
+	UPDATE Host SET lastname = NEW.lastname WHERE Host.host_id= NEW.user_id;
+	UPDATE Guest SET lastname = NEW.lastname WHERE Guest.guest_id= NEW.user_id;
+	END IF;
+	RETURN NEW;
+END $update_info$ LANGUAGE plpgsql;

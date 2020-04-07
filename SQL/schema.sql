@@ -84,11 +84,11 @@ CREATE TABLE Payment (
 	status varchar(20),
 	host_id int not null,
 	guest_id int not null,
-	property_id int not null,
+	property_id int,
 	primary key (transaction_id), 
 	foreign key (host_id) references Host(host_id),
 	foreign key (guest_id) references Guest(guest_id),
-	foreign key (property_id) references Property(property_id)
+	foreign key (property_id) references Property(property_id) on delete set null
 );
 
 CREATE TABLE Pricing (
