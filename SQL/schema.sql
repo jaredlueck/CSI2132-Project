@@ -82,12 +82,14 @@ CREATE TABLE Payment (
 	transaction_type varchar(20),
 	amount float not null,
 	status varchar(20),
-	host_id int not null,
-	guest_id int not null,
+	host_id int,
+	guest_id int,
 	property_id int,
 	primary key (transaction_id), 
-	foreign key (host_id) references Host(host_id),
-	foreign key (guest_id) references Guest(guest_id),
+	foreign key (host_id) references Host(host_id)
+		on delete set null,
+	foreign key (guest_id) references Guest(guest_id)
+		on delete set null,
 	foreign key (property_id) references Property(property_id) on delete set null
 );
 
@@ -106,13 +108,13 @@ CREATE TABLE Rental_Agreement (
 	sign_date date not null,
 	start_date date not null,	
 	end_date date not null constraint after_start check(end_date > start_date),
-	host_id int not null,
-	guest_id int not null, 
+	host_id int,
+	guest_id int, 
 	property_id int,
 	foreign key (host_id) references Host(host_id)
-		on delete cascade,
+		on delete set null,
 	foreign key (guest_id) references Guest(guest_id)
-		on delete cascade,
+		on delete set null,
 	foreign key (property_id) references Property(property_id)
 		on delete set null,
 	primary key(agreement_id)
