@@ -24,7 +24,6 @@ def search_availibilities(id, cur, con):
                 rate = 'Infinity'
             else:
                 rate = float(rate_in)
-                print("Fail")
             break
         except:
             print("Invalid rate")
@@ -47,8 +46,8 @@ def search_properties(cur, con, date, rate):
                FROM Property P INNER join Pricing PR ON P.property_id = PR.property_id
                LEFT OUTER JOIN Rental_Agreement RA on RA.property_id =  P.property_id
                WHERE ((NOT (RA.start_date <= to_date('{date}', 'YYYY-MM-DD')
-               AND to_date('{date}', 'YYYY-MM-DD') <= RA.end_date)  OR ('{date}' = ''))) 
-               AND ('{rate}' = '' OR ('{rate}' <> '' AND rate < '{rate}')) OR RA.agreement_id is NULL"""
+               AND to_date('{date}', 'YYYY-MM-DD') <= RA.end_date)  OR ('{date}' = '')) OR RA.agreement_id is NULL) 
+               AND ('{rate}' = '' OR ('{rate}' <> '' AND rate < '{rate}'))"""
               
     cur.execute(SQL1)
     
