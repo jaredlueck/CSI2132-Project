@@ -87,6 +87,14 @@ CREATE OR REPLACE FUNCTION get_availability(prop_id int)
 	RETURN res;
 END $$ LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION valid_branch(country_in varchar(20))
+	RETURNS BOOLEAN AS $$
+	BEGIN
+	PERFORM * FROM Branch WHERE country = country_in;
+
+	RETURN FOUND;
+
+	END $$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION update_host_guest_table()
 	RETURNS TRIGGER AS $update_info$

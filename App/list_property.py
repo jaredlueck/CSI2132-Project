@@ -42,11 +42,10 @@ def list_property(id, cur, con):
 
     while True:
         country = input("Enter the country of your property: ")
-        if country == "":
-            print("country cannot be empty")
-            continue
-        else:
+        if valid_country(country, cur):
             break
+        else:
+            print("Invlaid country. Country must be a country that exists in the 'Branch' table (ex: Canada)")
 
     while True:
         try:
@@ -92,6 +91,11 @@ def list_property(id, cur, con):
     cur.callproc("new_pricing", [property_id, rate, guest_number, property_type])
 
     con.commit()
+
+def valid_country(country, cur):
+        cur.callproc("valid_branch", [country,])
+        return cur.fetchall()[0][0]
+
 
     
      
