@@ -42,3 +42,4 @@ INSERT INTO Rental_User VALUES (584, 'loraine54@example.com', 902, 606, 'minima'
 INSERT INTO Rental_User VALUES (638, 'ankunding.keira@example.com', 546, 549, 'molestias', 'North Lucybury', 'pariatur', 'Hong Kong', 'Antwan', 'Sanford', 'Fadel');
 INSERT INTO Rental_User VALUES (731, 'adolfo.kuphal@example.net', 725, 488, 'nam', 'Nicolasview', 'consequatur', 'Chad', 'Daniella', 'Neil', 'Roob');
 INSERT INTO Rental_User VALUES (886, 'neva68@example.com', 869, 355, 'laudantium', 'East Paula', 'praesentium', 'Madagascar', 'Jailyn', 'Genoveva', 'Farrell');
+INSERT INTO Rental_User VALUES (887, 'user@uottawa.ca', 89, 55, 'King Edward avenue', 'Ottawa', 'Ontario', 'Canada', 'user', 'user', 'user');

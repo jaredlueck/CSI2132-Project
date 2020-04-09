@@ -37,5 +37,4 @@ while True:
     print((2 * "\n") + tabulate(res,
                                 headers=["Address", "City", "Province", "Country", "Beds", "Occupancy"])
           + (2 * "\n"))
-    res = cur.fetchall()
-    print(res)
+ 

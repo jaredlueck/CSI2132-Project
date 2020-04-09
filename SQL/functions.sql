@@ -31,19 +31,19 @@ CREATE OR REPLACE FUNCTION isHost(id INT)
 		END
 	$$ LANGUAGE plpgsql;
 	
-CREATE OR REPLACE FUNCTION new_property(user_id int, unit_number int, street_number int, 
+CREATE OR REPLACE FUNCTION new_property(new_id int, unit_number int, street_number int, 
 street varchar(20),  city varchar(20), province varchar(20), country varchar(20), beds_number int)
 RETURNS int AS $$ 
 	DECLARE property_id int;
 	BEGIN 
 		property_id := nextval('property_sequence');
-		IF NOT isHost(user_id) THEN
-			INSERT INTO Host SELECT * FROM User U Where U.user_id = user_id;
+		IF NOT isHost(new_id) THEN
+			INSERT INTO Host SELECT * FROM Rental_User U Where U.user_id = new_id;
 		END IF;
 		
 		
 		INSERT INTO Property VALUES(property_id, unit_number, street_number, street, city, 
-									province, country, beds_number, user_id);
+									province, country, beds_number, new_id);
 									
 		RETURN property_id;
 	END $$ LANGUAGE plpgsql;

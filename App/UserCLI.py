@@ -41,7 +41,7 @@ while True:
 
     while True:
 
-        op = input("Enter a command from the list above: ")
+        op = input("Enter the operation you wish to perform: ")
 
         if op == 'list':
             LP.list_property(uid, cur, con)
@@ -103,7 +103,7 @@ while True:
 
             while True:
                 field = input("Enter the field you wish to update (Must be one of the fields above) or "
-                              "'exit' to go back:")
+                              "'exit' to go back: ")
                 if field == 'exit':
                     break
 
