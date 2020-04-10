@@ -45,7 +45,7 @@ def list_property(id, cur, con):
         if valid_country(country, cur):
             break
         else:
-            print("Invlaid country. Country must be a country that exists in the 'Branch' table (ex: Canada)")
+            print("Invalid country. Country must be a country that exists in the 'Branch' table (ex: Canada)")
 
     while True:
         try:

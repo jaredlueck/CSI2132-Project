@@ -18,6 +18,11 @@ user_field_map = {"Email Address": "email_address",
 con = connectDB.get_connection()
 cur = con.cursor()
 
+def valid_country(country, cur):
+        cur.callproc("valid_branch", [country,])
+        res = cur.fetchall()[0][0]
+        return res
+
 while True:
 
     email = input("Welcome to Host/Guest Interface. Please Enter your email address to continue: ")
@@ -111,19 +116,27 @@ while True:
                     print("Invalid Field")
                     continue
 
-                val_in = input("Enter the new value: ")
-
-                if field == "Street Number" or field == "Unit Number":
-                    try:
-                        new_val = int(val_in)
-                    except ValueError:
-                        print("Invalid input for Unit Number or Street Number")
-                        continue
-                else:
-                    new_val = val_in
+                while True:
+                    val_in = input("Enter the new value: ")
+                    
+                    if field == "Street Number" or field == "Unit Number":
+                        try:
+                            new_val = int(val_in)
+                        except ValueError:
+                            print("Invalid input for Unit Number or Street Number")
+                            continue
+                    elif field == "Country":
+                        if not valid_country(val_in, cur):
+                            print("Invalid country. Country must be a country that exists in the 'Branch' table (ex: Canada)")
+                            continue
+                    break
+                
+                new_val = val_in
 
                 column = user_field_map[field]
-                cur.execute(f"UPDATE Rental_User RU SET {column} = '{new_val} 'WHERE RU.user_id = {uid} ")
+                cur.execute(f"UPDATE Rental_User RU SET {column} = '{new_val}' WHERE RU.user_id = {uid} ")
                 con.commit()
         else:
             print("Unknown command. Please enter: list, search, view, remove, info or update-info")
+
+
